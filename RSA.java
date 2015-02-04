@@ -1,7 +1,7 @@
 /*
- * Project : RSA Algorithm
+ * Project 1: RSA Algorithm
  * 
- * 
+ * Algorithms- Dr. Zhong-Hui Duan
  */
 
 /**
@@ -129,8 +129,7 @@ public class RSA {
 
 	//Function for Modular Exponentiation m^e mod N
 	//Params: M is an integer to be raised to power e and then mod by N
-	public static BigInteger modExp(BigInteger m,BigInteger e, BigInteger n)
-	{
+	public static BigInteger modExp(BigInteger m,BigInteger e, BigInteger n){
 		if(e.compareTo(zero)==0)
 				return one;
 		BigInteger spltVal=modExp(m, e.divide(two), n);
@@ -144,8 +143,7 @@ public class RSA {
 	//Function for RSA Encryption
 	//Params e-public key,n=p*q and m is the message for encryption
 	public static String[] encRSA(BigInteger e, BigInteger n, String m) 
-	throws Exception
-	{
+	throws Exception{
 		char x;	
 		String msg=m;
 		int noChars=m.length();
@@ -180,7 +178,7 @@ public class RSA {
 			if(ind2>m.length())
 				ind2=m.length();
 			String wordExt=m.substring(ind,ind2);
-			System.out.println("Extracted Word: "+wordExt);
+			//System.out.println("Extracted Word: "+wordExt);
 			for(int i1=wordExt.length()-1;i1>=0;i1--){
 				x=wordExt.charAt(i1);
 				BigInteger cVal=new BigInteger((int)x+"");
@@ -197,8 +195,7 @@ public class RSA {
 
 	//Function for RSA Decryption
 	//Params d-private key,n=p*q and m is the message for decryption
-	public static String[] decRSA(BigInteger d, BigInteger n, String m)
-	{
+	public static String[] decRSA(BigInteger d, BigInteger n, String m){
 		char x;
 		//Extraction based split on space character
 		String arr[]=m.split(" ");
@@ -226,8 +223,7 @@ public class RSA {
 	// Defining Inverse Modulo function
 	//Params: e being the public key finds a private key d with the help of p 
 	//and q; our primes
-	public static BigInteger[] invModulo(BigInteger e, BigInteger p, BigInteger q)
-	{
+	public static BigInteger[] invModulo(BigInteger e, BigInteger p, BigInteger q){
 		BigInteger phyN=(p.subtract(BigInteger.ONE))
 									.multiply(q.subtract(BigInteger.ONE));
 		BigInteger[] privKey=new BigInteger[]{one,one,one};
@@ -248,8 +244,7 @@ public class RSA {
 
 	//Function for GCD calculation based on recursion
 	//Params: Two integers n1 and n2
-	public static BigInteger[] calcGCD(BigInteger n1, BigInteger n2)
-	{
+	public static BigInteger[] calcGCD(BigInteger n1, BigInteger n2){
 		BigInteger[] bi=new BigInteger[]{n1,one,zero};
 		BigInteger[] bitemp=new BigInteger[]{one,one,one};
 		if(n2.compareTo(zero)==0)
@@ -279,8 +274,7 @@ public class RSA {
 
 	// Function for primality check with three random different bases.
 	//Params: integer 
-	public static boolean primalityTest(BigInteger bi)
-	{
+	public static boolean primalityTest(BigInteger bi){
 		BigInteger bi_min_1=bi.subtract(one);
 		Random r=new Random();
 		BigInteger a=getBase(bi);
@@ -316,8 +310,7 @@ public class RSA {
 
 	// Modulo : Recursive Function for Modular Arithmetic
 	// Params: integer a; the base and p-1 and p
-	public static BigInteger modulo(BigInteger a,BigInteger p_min_1, BigInteger p)
-	{
+	public static BigInteger modulo(BigInteger a,BigInteger p_min_1, BigInteger p){
 		BigInteger rem=zero;
 		BigInteger splt=one;
 		
@@ -386,8 +379,7 @@ public class RSA {
 	}
 
 	// Function to check if number is even
-	public static boolean isEven(BigInteger bi)
-	{
+	public static boolean isEven(BigInteger bi){
 		BigInteger[] qr=bi.divideAndRemainder(two);
 		if(qr[1].compareTo(zero)==0)
 			return true;
